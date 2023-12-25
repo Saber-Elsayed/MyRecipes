@@ -26,22 +26,6 @@ contentgluten = [
 ];
 let _data = [];
 let alrg;
-// const apiUrl = `https://recipes-goodness-elevation.herokuapp.com/recipes/ingredient/${givedata}`;
-
-// async function fetchData() {
-//   try {
-//     const response = await axios.get(apiUrl);
-//     Data = response.data;
-//   } catch (error) {
-//     console.error("Error fetching data:", error.message);
-//   }
-//   console.log(variable);
-// }
-
-// fetchData();
-// setTimeout(() => {
-//   console.log(Data);
-// }, 1000);
 
 router.get("/get/:search/:allergies", function (req, res) {
   searchData = req.params.search;
@@ -76,6 +60,10 @@ router.get("/get/:search/:allergies", function (req, res) {
       if (alrg === "gluten") {
         contentGluten();
       }
+
+      if (alrg === "dairy") {
+        contentdair();
+      }
       res.send(_data);
     });
 });
@@ -84,6 +72,21 @@ const contentGluten = function () {
   for (let i = 0; i < _data.length; i++) {
     newData = _data[i].ingredients.filter(function (element) {
       return contentgluten.includes(element);
+    });
+    _data[i].ingredients = newData;
+  }
+};
+
+for (let i = 0; i < _data.length; i++) {
+  if (_data[i].ingredients.length === 0) {
+    delete _data[i];
+  }
+}
+
+const contentdair = function () {
+  for (let i = 0; i < _data.length; i++) {
+    newData = _data[i].ingredients.filter(function (element) {
+      return contentdairy.includes(element);
     });
     _data[i].ingredients = newData;
   }
