@@ -1,0 +1,29 @@
+* {
+  font-family: "PT Sans", sans-serif;
+}
+
+body {
+  background-color: #d1ccc1;
+}
+
+#new-resp {
+  display: grid;
+  margin-bottom: 1vmax;
+}
+
+#Recipes {
+  margin-top: 50px;
+  display: grid;
+  grid-gap: 1vmax;
+  grid-template-columns: repeat(3, 1fr);
+}
+
+.recips {
+  align-content: center;
+  display: grid;
+  grid-template-columns: 10fr 1fr;
+  padding: 1vmax;
+  border-radius: 4px;
+  box-shadow: 1px 1px 3px black;
+  background-color: #fed980;
+}
