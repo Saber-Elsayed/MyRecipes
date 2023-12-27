@@ -1,7 +1,6 @@
 class recipesModel {
   constructor() {}
   fetch(search, allergies) {
-    console.log(allergies);
     axios
       .get(`/get/${search}/${allergies}`)
       .then(function (response) {

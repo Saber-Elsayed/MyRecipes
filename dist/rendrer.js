@@ -2,20 +2,23 @@ const source = $("#searchtemp-template").html();
 const template = Handlebars.compile(source);
 
 const render = function (search) {
-  data = filteValues(search);
-  console.log(data);
-  $("#Recipes").empty();
-  let newHtml = template(data);
-  $("#Recipes").append(newHtml);
-};
-
-const filteValues = function (search) {
-  let data = [];
-  for (let i = 0; i < search.length; i++) {
-    if (search[i].ingredients.length != 0) {
-      data[i] = search[i];
+  $.get(
+    "https://api.giphy.com/v1/gifs/search?q=food&api_key=DkXwCsnJYHKPNdrBVVJFNhTrVip6BfUx"
+  ).then((resp) => {
+    let resUrl = resp.data[0].url;
+    for (let i = 0; i < search.length; i++) {
+      search[i].thumbnail = resUrl;
     }
-  }
+    $("#Recipes").empty();
+    let newHtml = template(search);
+    $("#Recipes").append(newHtml);
+    console.log(search);
+  });
 
-  return data;
+  console.log(search);
+  // data = filteValues(search);
+  // console.log(data);
+  // $("#Recipes").empty();
+  // let newHtml = template(search);
+  // $("#Recipes").append(newHtml);
 };

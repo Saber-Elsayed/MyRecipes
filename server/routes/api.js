@@ -27,6 +27,8 @@ contentgluten = [
 let _data = [];
 let alrg;
 
+// var apiUrl = `https://api.giphy.com/v1/gifs/search`;
+
 router.get("/get/:search/:allergies", function (req, res) {
   searchData = req.params.search;
   alrg = req.params.allergies;
@@ -40,6 +42,7 @@ router.get("/get/:search/:allergies", function (req, res) {
       `https://recipes-goodness-elevation.herokuapp.com/recipes/ingredient/${req.params.search}`
     )
     .then((resp) => {
+      // console.log(resp.data.results[0]);
       _data = resp.data.results.map((key) => {
         return {
           idMeal: key.idMeal,
@@ -49,13 +52,24 @@ router.get("/get/:search/:allergies", function (req, res) {
           href: key.href,
         };
       });
-      for (let i = 0; i < _data.length; i++) {
-        const randomName = faker.person.fullName();
-        const secondRandom = faker.number.int(10, 50);
+      // for (let i = 0; i < _data.length; i++) {
+      //   axios
+      //     .get(
+      //       "https://api.giphy.com/v1/gifs/search?q=food&api_key=DkXwCsnJYHKPNdrBVVJFNhTrVip6BfUx"
+      //     )
+      //     .then((resp) => {
+      //       let resUrl = resp.data.data[0].url;
+      //       console.log(resUrl);
 
-        _data[i].name = randomName;
-        _data[i].rating = secondRandom;
-      }
+      //       _data[i].thumbnail = resUrl;
+      //       console.log(_data);
+      //     });
+      // }
+      // console.log(_data);
+      // for (let i = 0; i < _data.length; i++) {
+      //   _data[i].button = randomName;
+      // }
+      // console.log("url" + apiUrl);
 
       if (alrg === "gluten") {
         contentGluten();
@@ -64,6 +78,7 @@ router.get("/get/:search/:allergies", function (req, res) {
       if (alrg === "dairy") {
         contentdair();
       }
+      console.log(_data);
       res.send(_data);
     });
 });

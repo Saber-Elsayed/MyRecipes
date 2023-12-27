@@ -21,8 +21,13 @@
       <input type="checkbox" id="gluten" />
       <label for="gluten"> gluten</label>
     </div>
-    <input type="checkbox" id="dairy" />
-    <label for="dairy"> dairy</label>
+    <div>
+      <input type="checkbox" id="dairy" />
+      <label for="dairy"> dairy</label>
+    </div>
+
+    <button id="prev">Prev</button>
+    <button id="next">Next</button>
 
     <div class="Recipes" id="Recipes"></div>
     <script id="searchtemp-template" type="text/x-handlebars-template">
@@ -36,15 +41,24 @@
             width="200"
             height="200"
           />
-          <h3>chef:<h3>{{name}}</h3></h3>
-          <h3>rating:<h3>{{rating}}</h3></h3>
+          <!-- <h3>chef:<h3>{{name}}</h3></h3>
+            <h3>rating:<h3>{{rating}}</h3></h3> -->
           <br />
           <ul>
-            {{#each ingredients}}
 
+            {{#each ingredients}}
               <li>{{this}}</li>
             {{/each}}
+            <button>
+              <a
+                href="mailto:?subject=Check out htis recipe! Summer pudding
+      &body=You can see the recipe in this video {{thumbnail}}"
+              >
+                Email us</a>
+            </button>
+
           </ul>
+
         </div>
       {{/each}}
     </script>
